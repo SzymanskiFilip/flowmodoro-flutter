@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "./themes/themes.dart";
 import "./app.dart";
 
 void main(){
@@ -10,6 +11,7 @@ class Flowmodoro extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       home: App(),
+      theme: Themes.darkTheme,
     );
   }
 }
