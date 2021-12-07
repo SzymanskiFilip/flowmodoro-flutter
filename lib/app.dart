@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './widgets/timer.dart';
+import './widgets/TimerWidget.dart';
 
 class App extends StatelessWidget {
   @override
@@ -11,7 +11,7 @@ class App extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Timer(),
+        child: TimerWidget(),
       ),
     );
   }
