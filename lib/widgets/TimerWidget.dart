@@ -41,7 +41,7 @@ class _TimerWidgetState extends State<TimerWidget> {
         Row(children: [
           Text("button1"),
           Text("button2")
-        ],)
+        ], mainAxisAlignment: MainAxisAlignment.center,)
       ],),
     );
   }
