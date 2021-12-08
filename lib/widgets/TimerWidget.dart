@@ -10,6 +10,7 @@ class TimerWidget extends StatefulWidget {
 
 class _TimerWidgetState extends State<TimerWidget> {
   Duration time = Duration();
+  Duration timeInMinutes = Duration();
   Duration second = Duration(seconds: 1);
   Timer? timer;
 
@@ -27,6 +28,11 @@ class _TimerWidgetState extends State<TimerWidget> {
   void updateTime(){
     final second = 1;
 
+    if(time.inSeconds > 59){
+      timeInMinutes += Duration(minutes: 1);
+      time = Duration(seconds: 0);
+    }
+
     setState(() {
       final seconds = time.inSeconds + second;
       time = Duration(seconds: seconds);
@@ -37,12 +43,12 @@ class _TimerWidgetState extends State<TimerWidget> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(children: [
-        Text("hello"),
+        Text(timeInMinutes.inMinutes.toString() + " : " + time.inSeconds.toString()),
         Row(children: [
           Text("button1"),
           Text("button2")
         ], mainAxisAlignment: MainAxisAlignment.center,)
-      ],),
+      ], mainAxisAlignment: MainAxisAlignment.center,),
     );
   }
 }
