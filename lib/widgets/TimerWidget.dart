@@ -41,9 +41,13 @@ class _TimerWidgetState extends State<TimerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final minutes = twoDigits(time.inMinutes.remainder(60));
+    final seconds = twoDigits(time.inSeconds.remainder(60));
+
     return Container(
       child: Column(children: [
-        Text(timeInMinutes.inMinutes.toString() + " : " + time.inSeconds.toString()),
+        Text("$minutes:$seconds"),
         Row(children: [
           Text("button1"),
           Text("button2")
