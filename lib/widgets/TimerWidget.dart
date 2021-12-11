@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "dart:async";
+import "../themes/themes.dart";
 
 class TimerWidget extends StatefulWidget {
   const TimerWidget({Key? key}) : super(key: key);
@@ -41,10 +42,11 @@ class _TimerWidgetState extends State<TimerWidget> {
 
     return Container(
       child: Column(children: [
-        Text("$minutes:$seconds"),
+        Text("$minutes:$seconds", style: Themes.timerStyle,),
         Row(children: [
           Text("button1"),
-          Text("button2")
+          Text("button2"),
+          TextButton(child: Text("hello"), onPressed: () => {print('1')},),
         ], mainAxisAlignment: MainAxisAlignment.center,)
       ], mainAxisAlignment: MainAxisAlignment.center,),
     );
