@@ -11,5 +11,9 @@ class Themes{
 
   );
 
+  static final timerStyle = TextStyle(
+    fontSize: 50,
+  );
+
 
 }
