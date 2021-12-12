@@ -20,13 +20,13 @@ class _TimerWidgetState extends State<TimerWidget> {
     startTimer();
   }
 
-  void startTimer(){
+  void startTimer() {
     timer = Timer.periodic(second, (timer) {
       updateTime();
     });
   }
 
-  void updateTime(){
+  void updateTime() {
     final second = 1;
 
     setState(() {
@@ -35,7 +35,6 @@ class _TimerWidgetState extends State<TimerWidget> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -43,12 +42,25 @@ class _TimerWidgetState extends State<TimerWidget> {
     final seconds = twoDigits(time.inSeconds.remainder(60));
 
     return Container(
-      child: Column(children: [
-        Text("$minutes:$seconds", style: Themes.timerStyle,),
-        Row(children: [
-          ButtonWidget(text: "hello", onClick: () => {print("hello")},),
-        ], mainAxisAlignment: MainAxisAlignment.center,)
-      ], mainAxisAlignment: MainAxisAlignment.center,),
+      child: Column(
+        children: [
+          Text(
+            "$minutes:$seconds",
+            style: Themes.timerStyle,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ButtonWidget(
+                text: "Stop",
+                onClick: () => {print("hello")},
+              ),
+              ButtonWidget(text: "Break", onClick: () => {print("hello")})
+            ],
+          )
+        ],
+        mainAxisAlignment: MainAxisAlignment.center,
+      ),
     );
   }
 }
