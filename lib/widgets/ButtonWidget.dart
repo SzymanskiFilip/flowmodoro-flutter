@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "../themes/themes.dart";
 
 class ButtonWidget extends StatelessWidget {
-
   final String text;
   final VoidCallback onClick;
 
@@ -9,6 +9,13 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(child: Text(text), onPressed: onClick);
+    return Container(
+      margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+      child: TextButton(
+        child: Text(text),
+        onPressed: onClick,
+        style: Themes.buttonStyle,
+      ),
+    );
   }
 }
