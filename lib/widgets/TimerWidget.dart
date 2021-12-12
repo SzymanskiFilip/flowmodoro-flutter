@@ -1,3 +1,4 @@
+import 'package:flowmodoro/widgets/ButtonWidget.dart';
 import "package:flutter/material.dart";
 import "dart:async";
 import "../themes/themes.dart";
@@ -34,6 +35,7 @@ class _TimerWidgetState extends State<TimerWidget> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
@@ -44,9 +46,7 @@ class _TimerWidgetState extends State<TimerWidget> {
       child: Column(children: [
         Text("$minutes:$seconds", style: Themes.timerStyle,),
         Row(children: [
-          Text("button1"),
-          Text("button2"),
-          TextButton(child: Text("hello"), onPressed: () => {print('1')},),
+          ButtonWidget(text: "hello", onClick: () => {print("hello")},),
         ], mainAxisAlignment: MainAxisAlignment.center,)
       ], mainAxisAlignment: MainAxisAlignment.center,),
     );
