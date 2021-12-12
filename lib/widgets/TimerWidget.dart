@@ -16,7 +16,6 @@ class _TimerWidgetState extends State<TimerWidget> {
   Timer? timer;
   bool running = false;
 
-
   @override
   void initState() {
     startTimer();
@@ -29,7 +28,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 
   void updateTime() {
-    if(running){
+    if (running) {
       final second = 1;
 
       setState(() {
@@ -39,8 +38,13 @@ class _TimerWidgetState extends State<TimerWidget> {
     }
   }
 
-  void startButton(){
-
+  void startButton() {
+    print("clicked");
+    if (running) {
+      running = false;
+    } else {
+      running = true;
+    }
   }
 
   @override
@@ -60,10 +64,10 @@ class _TimerWidgetState extends State<TimerWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ButtonWidget(
-                text: !running ? "Start" : "Stop",
-                onClick: () => {print("hello")},
+                text: running ? "Stop" : "Start",
+                onClick: startButton,
+                running: running,
               ),
-              ButtonWidget(text: "Break", onClick: () => {print("hello")})
             ],
           )
         ],
