@@ -15,5 +15,11 @@ class Themes{
     fontSize: 50,
   );
 
+  static final buttonStyle = TextButton.styleFrom(
+    backgroundColor: Colors.black,
+    primary: Colors.white,
+    padding: EdgeInsets.all(10.0),
+  );
+
 
 }
