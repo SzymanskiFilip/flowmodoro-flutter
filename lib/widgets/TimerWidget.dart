@@ -13,6 +13,7 @@ class TimerWidget extends StatefulWidget {
 class _TimerWidgetState extends State<TimerWidget> {
   Duration time = Duration();
   Duration second = Duration(seconds: 1);
+  Duration minusSecond = Duration(seconds: -1);
   Timer? timer;
   bool running = false;
 
@@ -38,13 +39,20 @@ class _TimerWidgetState extends State<TimerWidget> {
     }
   }
 
-  void startButton() {
+  void stop() {
     print("clicked");
     if (running) {
       running = false;
     } else {
       running = true;
     }
+    setState(() {
+
+    });
+  }
+
+  void breakFunction() {
+    print("going to break phase");
   }
 
   @override
@@ -65,9 +73,11 @@ class _TimerWidgetState extends State<TimerWidget> {
             children: [
               ButtonWidget(
                 text: running ? "Stop" : "Start",
-                onClick: startButton,
+                onClick: stop,
                 running: running,
               ),
+              ButtonWidget(
+                  text: "Break", onClick: breakFunction, running: running),
             ],
           )
         ],
