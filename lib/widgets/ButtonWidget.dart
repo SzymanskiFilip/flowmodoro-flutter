@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({Key? key}) : super(key: key);
+
+  final String text;
+  final VoidCallback onClick;
+
+  ButtonWidget({required this.text, required this.onClick});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return TextButton(child: Text(text), onPressed: onClick);
   }
 }
