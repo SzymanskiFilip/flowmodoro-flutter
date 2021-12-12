@@ -14,12 +14,6 @@ class ButtonWidget extends StatefulWidget {
 }
 
 class _ButtonWidgetState extends State<ButtonWidget> {
-  void func() {
-    widget.onClick();
-    setState(() {
-      widget.text = "Start";
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +21,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
       margin: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
       child: TextButton(
         child: Text(widget.text),
-        onPressed: func,
+        onPressed: widget.onClick,
         style: Themes.buttonStyle,
       ),
     );
