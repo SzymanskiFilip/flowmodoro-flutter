@@ -52,7 +52,8 @@ class _BreakScreenState extends State<BreakScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Break Phase"),
+        title: Center(child: Text("Break Phase")),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         child: Center(
