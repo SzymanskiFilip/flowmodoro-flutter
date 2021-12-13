@@ -22,6 +22,9 @@ class _BreakScreenState extends State<BreakScreen> {
 
   void startTimer() {
     timer = Timer.periodic(second, (timer) {
+      if(time.isNegative){
+        timer.cancel();
+      }
       updateTime();
     });
   }
@@ -31,6 +34,7 @@ class _BreakScreenState extends State<BreakScreen> {
       int seconds = time.inSeconds - 1;
       time = Duration(seconds: seconds);
       print(time.inSeconds);
+
     });
   }
 
