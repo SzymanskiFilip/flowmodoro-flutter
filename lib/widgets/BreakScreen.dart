@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flowmodoro/widgets/ButtonWidget.dart';
 import "package:flutter/material.dart";
 import "../themes/themes.dart";
 
@@ -11,9 +12,10 @@ class BreakScreen extends StatefulWidget {
 }
 
 class _BreakScreenState extends State<BreakScreen> {
-  Duration time = Duration(minutes: 1, seconds: 1);
+  Duration time = Duration(seconds: 5);
   final Duration second = Duration(seconds: 1);
   Timer? timer;
+  bool running = true;
 
   @override
   void initState() {
@@ -22,10 +24,11 @@ class _BreakScreenState extends State<BreakScreen> {
 
   void startTimer() {
     timer = Timer.periodic(second, (timer) {
-      if(time.isNegative){
+      updateTime();
+      if (time.inSeconds == 0) {
+        running = false;
         timer.cancel();
       }
-      updateTime();
     });
   }
 
@@ -34,8 +37,11 @@ class _BreakScreenState extends State<BreakScreen> {
       int seconds = time.inSeconds - 1;
       time = Duration(seconds: seconds);
       print(time.inSeconds);
-
     });
+  }
+
+  void onBack() {
+    Navigator.pop(context);
   }
 
   @override
@@ -57,6 +63,9 @@ class _BreakScreenState extends State<BreakScreen> {
                 "$minutes:$seconds",
                 style: Themes.timerStyle,
               ),
+              if (!running)
+                ButtonWidget(
+                    text: "Come back", onClick: onBack, running: running)
             ],
           ),
         ),
