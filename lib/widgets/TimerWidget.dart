@@ -56,6 +56,7 @@ class _TimerWidgetState extends State<TimerWidget> {
       // time is longer than 10s so you can switch
       print("10s passed");
       stop();
+      time = Duration(seconds: 0);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => BreakScreen()));
     }
