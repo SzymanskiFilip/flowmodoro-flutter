@@ -1,3 +1,4 @@
+import 'package:flowmodoro/widgets/BreakScreen.dart';
 import 'package:flowmodoro/widgets/ButtonWidget.dart';
 import "package:flutter/material.dart";
 import "dart:async";
@@ -46,13 +47,18 @@ class _TimerWidgetState extends State<TimerWidget> {
     } else {
       running = true;
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   void breakFunction() {
     print("going to break phase");
+    if (time.inSeconds.toInt() >= 10) {
+      // time is longer than 10s so you can switch
+      print("10s passed");
+      stop();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => BreakScreen()));
+    }
   }
 
   @override
