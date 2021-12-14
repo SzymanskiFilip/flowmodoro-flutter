@@ -52,7 +52,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 
   void breakFunction() {
-    if (time.inSeconds < 2) {
+    if (time.inSeconds < 10) {
       String txt = "To do a break you have to focus for at least 10 seconds.";
       SnackBar sb = new SnackBar(
         content: Text(txt),
@@ -61,7 +61,7 @@ class _TimerWidgetState extends State<TimerWidget> {
       );
       ScaffoldMessenger.of(context).showSnackBar(sb);
     }
-    if (time.inSeconds.toInt() >= 2) {
+    if (time.inSeconds.toInt() >= 10) {
       // time is longer than 10s so you can switch
       timeToPass = Duration(seconds: time.inSeconds);
       stop();
