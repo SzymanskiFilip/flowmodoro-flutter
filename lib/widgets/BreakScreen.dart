@@ -22,7 +22,8 @@ class _BreakScreenState extends State<BreakScreen> {
 
   @override
   void initState() {
-    time = widget.toCountDown;
+    double dividedBreakTime = widget.toCountDown.inSeconds / 5;
+    time = Duration(seconds: dividedBreakTime.toInt());
     startTimer();
   }
 
@@ -34,7 +35,7 @@ class _BreakScreenState extends State<BreakScreen> {
 
   void decreaseTimer(){
 
-    if(time.inSeconds < 1){
+    if(time.inSeconds == 0){
       running = false;
     } else {
       final decSeconds = -1;
