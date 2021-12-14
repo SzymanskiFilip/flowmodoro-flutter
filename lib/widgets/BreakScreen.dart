@@ -28,6 +28,7 @@ class _BreakScreenState extends State<BreakScreen> {
       if (time.inSeconds == 0) {
         running = false;
         timer.cancel();
+        //TODO: add sound alarm and vibration
       }
     });
   }

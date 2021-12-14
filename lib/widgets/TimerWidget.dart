@@ -57,8 +57,13 @@ class _TimerWidgetState extends State<TimerWidget> {
       print("10s passed");
       stop();
       time = Duration(seconds: 0);
+
+      //TODO: pass time to countdown
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => BreakScreen()));
+    }
+    if(time.inSeconds < 10){
+      //TODO: add alert, only after 10sec
     }
   }
 
