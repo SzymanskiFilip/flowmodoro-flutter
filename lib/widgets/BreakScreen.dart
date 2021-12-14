@@ -33,11 +33,19 @@ class _BreakScreenState extends State<BreakScreen> {
   }
 
   void decreaseTimer(){
-    final decSeconds = -1;
+
+    if(time.inSeconds < 1){
+      running = false;
+    } else {
+      final decSeconds = -1;
+      setState(() {
+        final seconds = time.inSeconds + decSeconds;
+        time = Duration(seconds: seconds);
+        print(time.inSeconds);
+      });
+    }
     setState(() {
-      final seconds = time.inSeconds + decSeconds;
-      time = Duration(seconds: seconds);
-      print(time.inSeconds);
+
     });
   }
 
