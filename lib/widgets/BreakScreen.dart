@@ -5,41 +5,43 @@ import "package:flutter/material.dart";
 import "../themes/themes.dart";
 
 class BreakScreen extends StatefulWidget {
-  const BreakScreen({Key? key}) : super(key: key);
+  final Duration toCountDown;
+
+
+  BreakScreen(this.toCountDown);
 
   @override
   _BreakScreenState createState() => _BreakScreenState();
 }
 
 class _BreakScreenState extends State<BreakScreen> {
-  Duration time = Duration(seconds: 5);
+  Duration time = Duration();
   final Duration second = Duration(seconds: 1);
   Timer? timer;
   bool running = true;
 
   @override
   void initState() {
+    time = widget.toCountDown;
     startTimer();
   }
 
-  void startTimer() {
+  void startTimer(){
     timer = Timer.periodic(second, (timer) {
-      updateTime();
-      if (time.inSeconds == 0) {
-        running = false;
-        timer.cancel();
-        //TODO: add sound alarm and vibration
-      }
+      decreaseTimer();
     });
   }
 
-  void updateTime() {
+  void decreaseTimer(){
+    final decSeconds = -1;
     setState(() {
-      int seconds = time.inSeconds - 1;
+      final seconds = time.inSeconds + decSeconds;
       time = Duration(seconds: seconds);
       print(time.inSeconds);
     });
   }
+
+
 
   void onBack() {
     Navigator.pop(context);

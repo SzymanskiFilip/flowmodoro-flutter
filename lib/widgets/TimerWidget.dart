@@ -15,6 +15,7 @@ class _TimerWidgetState extends State<TimerWidget> {
   Duration time = Duration();
   Duration second = Duration(seconds: 1);
   Duration minusSecond = Duration(seconds: -1);
+  Duration timeToPass = Duration();
   Timer? timer;
   bool running = false;
 
@@ -51,26 +52,25 @@ class _TimerWidgetState extends State<TimerWidget> {
   }
 
   void breakFunction() {
-    print("going to break phase");
-    if (time.inSeconds.toInt() >= 10) {
-      // time is longer than 10s so you can switch
-      print("10s passed");
-      stop();
-      time = Duration(seconds: 0);
-
-      //TODO: pass time to countdown
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => BreakScreen()));
-    }
-    if (time.inSeconds < 10) {
+    if (time.inSeconds < 2) {
       String txt = "To do a break you have to focus for at least 10 seconds.";
       SnackBar sb = new SnackBar(
         content: Text(txt),
         backgroundColor: Colors.white,
         duration: Duration(seconds: 2),
-
       );
       ScaffoldMessenger.of(context).showSnackBar(sb);
+    }
+    if (time.inSeconds.toInt() >= 2) {
+      // time is longer than 10s so you can switch
+      timeToPass = Duration(seconds: time.inSeconds);
+      stop();
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  BreakScreen(Duration(seconds: timeToPass.inSeconds))));
+      time = Duration(seconds: 0);
     }
   }
 
@@ -83,25 +83,25 @@ class _TimerWidgetState extends State<TimerWidget> {
     return Container(
       child: Column(
         children: [
-      Text(
-      "$minutes:$seconds",
-        style: Themes.timerStyle,
-      ),
-      Row(
+          Text(
+            "$minutes:$seconds",
+            style: Themes.timerStyle,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ButtonWidget(
+                text: running ? "Stop" : "Start",
+                onClick: stop,
+                running: running,
+              ),
+              ButtonWidget(
+                  text: "Break", onClick: breakFunction, running: running),
+            ],
+          )
+        ],
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-      ButtonWidget(
-      text: running ? "Stop" : "Start",
-        onClick: stop,
-        running: running,
       ),
-      ButtonWidget(
-          text: "Break", onClick: breakFunction, running: running),
-      ],
-    )],
-    mainAxisAlignment: MainAxisAlignment.center,
-
-    ),
     );
   }
 }
