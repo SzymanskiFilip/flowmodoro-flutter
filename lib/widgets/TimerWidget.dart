@@ -62,8 +62,15 @@ class _TimerWidgetState extends State<TimerWidget> {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => BreakScreen()));
     }
-    if(time.inSeconds < 10){
-      //TODO: add alert, only after 10sec
+    if (time.inSeconds < 10) {
+      String txt = "To do a break you have to focus for at least 10 seconds.";
+      SnackBar sb = new SnackBar(
+        content: Text(txt),
+        backgroundColor: Colors.white,
+        duration: Duration(seconds: 2),
+
+      );
+      ScaffoldMessenger.of(context).showSnackBar(sb);
     }
   }
 
@@ -76,25 +83,25 @@ class _TimerWidgetState extends State<TimerWidget> {
     return Container(
       child: Column(
         children: [
-          Text(
-            "$minutes:$seconds",
-            style: Themes.timerStyle,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ButtonWidget(
-                text: running ? "Stop" : "Start",
-                onClick: stop,
-                running: running,
-              ),
-              ButtonWidget(
-                  text: "Break", onClick: breakFunction, running: running),
-            ],
-          )
-        ],
-        mainAxisAlignment: MainAxisAlignment.center,
+      Text(
+      "$minutes:$seconds",
+        style: Themes.timerStyle,
       ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+      ButtonWidget(
+      text: running ? "Stop" : "Start",
+        onClick: stop,
+        running: running,
+      ),
+      ButtonWidget(
+          text: "Break", onClick: breakFunction, running: running),
+      ],
+    )],
+    mainAxisAlignment: MainAxisAlignment.center,
+
+    ),
     );
   }
 }
