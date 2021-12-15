@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.filip.flowmodoro">
    <application
-        android:label="flowmodoro"
+        android:label="Flowmodoro"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
