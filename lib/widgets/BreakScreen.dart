@@ -1,8 +1,10 @@
 import 'dart:async';
 
-import 'package:flowmodoro/widgets/ButtonWidget.dart';
+import "package:flowmodoro/widgets/ButtonWidget.dart";
 import "package:flutter/material.dart";
 import "../themes/themes.dart";
+import "package:flutter_ringtone_player/flutter_ringtone_player.dart";
+
 
 class BreakScreen extends StatefulWidget {
   final Duration toCountDown;
@@ -19,6 +21,7 @@ class _BreakScreenState extends State<BreakScreen> {
   final Duration second = Duration(seconds: 1);
   Timer? timer;
   bool running = true;
+  bool alarm = false;
 
   @override
   void initState() {
@@ -33,10 +36,12 @@ class _BreakScreenState extends State<BreakScreen> {
     });
   }
 
-  void decreaseTimer(){
 
+  void decreaseTimer(){
     if(time.inSeconds == 0){
+      FlutterRingtonePlayer.playNotification(asAlarm: true);
       running = false;
+      time = Duration(seconds: -1);
     } else {
       final decSeconds = -1;
       setState(() {
@@ -45,12 +50,8 @@ class _BreakScreenState extends State<BreakScreen> {
         print(time.inSeconds);
       });
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
-
-
 
   void onBack() {
     Navigator.pop(context);
@@ -59,8 +60,14 @@ class _BreakScreenState extends State<BreakScreen> {
   @override
   Widget build(BuildContext context) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(time.inMinutes.remainder(60));
-    final seconds = twoDigits(time.inSeconds.remainder(60));
+
+    String minutes = twoDigits(time.inMinutes.remainder(60));
+    String seconds = twoDigits(time.inSeconds.remainder(60));
+
+    if(time.inSeconds < 0){
+      minutes = "00";
+      seconds = "00";
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -86,5 +93,3 @@ class _BreakScreenState extends State<BreakScreen> {
     );
   }
 }
-
-//TODO: Add alarm on timer end, add a button to return back to timer
